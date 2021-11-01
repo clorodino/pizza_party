@@ -4,7 +4,7 @@ class Ingredients {
         this.image = image
         this.x = 0
         this.y = 0
-        this.direction =  this.direction
+        this.speed = 20
     }
   
     draw() {
@@ -12,18 +12,69 @@ class Ingredients {
     }
   
     move() {
-      //this.x += this.speed * -2;
+        this.x += this.speed * -2;
     }
   }
-
-// const ingredients = [
-//     {
-//     name: "tomato",
-//     img: URL("https://slack-imgs.com/?c=1&o1=ro&url=https%3A%2F%2Feasyappicon.com%2Fimage%2Ffavicon%2Fms-icon-310x310.png"),
-//     color: "black"
-//     },
-//     {name: "pineapple"},
-//     {name: "mozzarella"},
-//     {name: "basil"},
-//     {name: "ham"}
-//
+  
+const ingredients = [
+  {
+    name: "tomato",
+    image: '/images/tomato.png'
+  },
+  {
+    name: "mozzarella",
+    image: '/images/mozzarella.png'
+  },
+  {
+    name: "basil",
+    image: '/images/basil.png'
+  },
+  {
+    name: "ham",
+    image: '/images/ham.png'
+  },
+  {
+    name: "anchovies",
+    image: '/images/anchovies.png'
+  },
+  {
+    name: "capers",
+    image: '/images/capers.png'
+  },
+  {
+    name: "olives",
+    image: '/images/olives.png'
+  },
+  {
+    name: "mushrooms",
+    image: '/images/mushrooms.png'
+  },
+  {
+    name: "pineapple",
+    image: '/images/pineapple.png'
+  },
+  {
+    name: "tuna",
+    image: '/images/tuna.png'
+  },
+  {
+    name: "mussels",
+    image: '/images/mussels.png'
+  },
+  {
+    name: "egg",
+    image: '/images/eggs.png'
+  },
+  {
+    name: "avocado",
+    image: '/images/avocado.png'
+  },
+  {
+    name: "nachos",
+    image: '/images/nachos.png'
+  },
+  {
+    name: "chocolate",
+    image: '/images/chocolate.png'
+  },
+]
