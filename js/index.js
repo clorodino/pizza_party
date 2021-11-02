@@ -34,6 +34,5 @@ const buildGameOver = () => {
 
 //When the page charge init the splash screen
 window.onload = function() {
-    //buildSplashScreen();
-    buildGame()
+    buildSplashScreen();
 };

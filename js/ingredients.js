@@ -1,25 +1,7 @@
-class Ingredients {
-    constructor(name, image) {
-        this.name = name
-        this.image = image
-        this.x = 0
-        this.y = 0
-        this.speed = 20
-    }
-  
-    draw() {
-        this.ctx.drawImage(this.image)
-    }
-  
-    move() {
-        this.x += this.speed * -2;
-    }
-  }
-  
-const ingredients = [
+const ingredientsList = [
   {
     name: "tomato",
-    image: '/images/tomato.png'
+    image: 'images/tomato.png'
   },
   {
     name: "mozzarella",
@@ -78,3 +60,30 @@ const ingredients = [
     image: '/images/chocolate.png'
   },
 ]
+
+class Ingredient {
+  constructor(name, image, x, y, ctx, speed) {
+      this.name = name
+      this.image = image
+      this.x = x
+      this.y = -60
+      this.size = 60;
+      this.ctx = ctx;
+      this.speed = speed
+  }
+
+  draw() {
+      const imgIngredient = new Image()
+      imgIngredient.src = this.image
+      this.ctx.drawImage(imgIngredient, this.x, this.y, this.size, this.size)
+
+  }
+
+  move() {
+      this.y += this.speed * 2;
+  }
+
+}
+
+
+
