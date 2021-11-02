@@ -5,26 +5,29 @@ class Game {
         this.player = null
         this.ingredients = []
         this.recipe = []
+        this.ingredientsCatched = []
         this.lives = 3
         this.gameOver = false
     }
 
     // Init the player, obstacules and rewards movement
     start(){
+        // show the recipe
+        this.recipe = level2
+        //console.log(this.recipe)
+        this.recipe.forEach(element => {
+            console.log(element.name);
+        })
+        
         this.canvas = document.querySelector("#canvas")
         this.ctx = canvas.getContext('2d')
-        this.player = new Player(this.canvas, 3)
+        this.player = new Player(this.canvas)
         this.player.draw()
-        //console.log(this.player.x)
 
         window.addEventListener("keydown", (event) => {
             if (event.code === "ArrowLeft" && this.player.x > 0) {
-                //console.log(this.player.x)
-                
                 this.player.x -= this.player.speed
-            } else if (event.code === "ArrowRight" && this.player.x < this.canvas.width - this.player.size) {
-                //console.log(this.player.x)
-                
+            } else if (event.code === "ArrowRight" && this.player.x < this.canvas.width - this.player.size) {              
                 this.player.x += this.player.speed
             }
         });
@@ -40,19 +43,21 @@ class Game {
 
             // create falling ingredients
             if (Math.random() > 0.99) {
-                //const x = Math.random() * this.canvas.width;
                 const x = Math.floor(Math.random() * this.canvas.width)
                 const y = this.canvas.height - 20;
                 const randomIndex = Math.floor(Math.random() * ingredientsList.length);
-                this.ingredients.push(new Ingredient(ingredientsList[randomIndex].name, ingredientsList[randomIndex].image, x, y, this.ctx, 2));
+                this.ingredients.push(new Ingredient(ingredientsList[randomIndex].name, ingredientsList[randomIndex].image, x, y, this.ctx, 3));
             }
 
             this.ingredients.forEach((ingredient) => {
+                ingredient.move()   
                 ingredient.draw()
-                ingredient.move();
+                
               });
 
             this.checkCollisions();
+
+              this.ingredients =  this.ingredients.filter((el) => el.y<this.canvas.height)
 
             if (this.gameOver === false){
                 window.requestAnimationFrame(loopCallback);
@@ -63,20 +68,32 @@ class Game {
     }
     // Check if there are any collision
     checkCollisions(){
+        //  console.log(this.ingredients);
         this.ingredients.forEach((ingredient, indexIngredient) => {
-            if (this.player.collision(ingredient)) {
-                // if collision we need to check if the ingredient is correct
-                console.log(ingredient.name)
                 
+            if (this.player.collision(ingredient)) {
 
-                // if ingredient is not correct
-                if (this.lives > 0){
-                    this.ingredients.splice(indexIngredient, 1)
-                    this.lives -= 1
-                    console.log(this.lives)
-                }else{
-                    this.gameOver = true;
+                let checkRecipe = false
+
+                this.recipe.forEach(element => {
+                    if(element.name === ingredient.name){
+                        console.log("included")
+                        element.active = true
+                        checkRecipe = true
+                    }
+                })
+
+                if(!checkRecipe){
+                    if(this.lives > 1){
+                        this.lives -= 1
+                        console.log(this.lives)
+                    }else{
+                        this.gameOver = true;
+                    }
                 }
+
+                this.ingredients.splice(indexIngredient, 1)
+                
             }
         })
     }
