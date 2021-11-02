@@ -24,7 +24,6 @@ class Player {
             this.y < ingredient.y + ingredient.size
           ) {
             return true;
-            //console.log("colapsa");
           } else {
             return false;
           }

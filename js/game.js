@@ -87,6 +87,7 @@ class Game {
                     if(this.lives > 1){
                         this.lives -= 1
                         console.log(this.lives)
+                        
                     }else{
                         this.gameOver = true;
                     }

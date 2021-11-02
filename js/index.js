@@ -24,7 +24,7 @@ const buildGameOver = () => {
     const screen = document.querySelector(".content")
     screen.innerHTML = `
     <div class="screen">
-        <button type="button" id="button-try-again">try again</button>
+        <button type="button" id="button-try-again">Try Again</button>
     </div> `
     const button = document.querySelector("#button-try-again")
     button.addEventListener("click", () => {

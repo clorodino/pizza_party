@@ -15,7 +15,6 @@ class Ingredient {
       const imgIngredient = new Image()
       imgIngredient.src = this.image
       this.ctx.drawImage(imgIngredient, this.x, this.y, this.size, this.size)
-
   }
 
   move() {
