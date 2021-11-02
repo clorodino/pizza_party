@@ -69,10 +69,6 @@ const ingredientsList = [
       image: '/images/mussels.png'
     },
     {
-      name: "egg",
-      image: '/images/eggs.png'
-    },
-    {
       name: "avocado",
       image: '/images/avocado.png'
     },

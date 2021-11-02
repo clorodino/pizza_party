@@ -32,7 +32,13 @@ class Player {
     draw(){
         // console.log(this.canvas.height / 2);
         //console.log("player draw")
-        this.ctx.fillStyle = "#66D3FA";
-        this.ctx.fillRect(this.x, this.y, this.size, this.size);
+        // this.ctx.fillStyle = "#66D3FA";
+        // this.ctx.fillRect(this.x, this.y, this.size, this.size);
+
+        const imgPizza = new Image()
+        imgPizza.src = "/images/pizza.png"
+        this.ctx.drawImage(imgPizza, this.x, this.y, this.size, this.size)
+
+
     }
 }
