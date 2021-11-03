@@ -3,6 +3,7 @@ const buildSplashScreen = () => {
     const screen = document.querySelector(".content")
     screen.innerHTML = `
     <div class="screen">
+        <div class="splash-screen">PIZZA PARTY</div>
         <button type="button" id="button-start">Start</button>
     </div> `
     const button = document.querySelector("#button-start")
@@ -28,11 +29,27 @@ const buildGame = () => {
     game.start()
 
 }
+
+const buildNextLevel = () => {
+    const screen = document.querySelector("#all-content")
+    screen.innerHTML = `
+    <div class="screen">
+        <div class="game-over">Next level</div>
+        <button type="button" id="button-next-level">Go</button>
+    </div> `
+    const button = document.querySelector("#button-next-level")
+    button.addEventListener("click", () => {
+        buildGame()
+    })
+}
+
+
 // Build de game over screen
 const buildGameOver = () => {
     const screen = document.querySelector("#all-content")
     screen.innerHTML = `
     <div class="screen">
+        <div class="game-over">GAME OVER</div>
         <button type="button" id="button-try-again">Try Again</button>
     </div> `
     const button = document.querySelector("#button-try-again")

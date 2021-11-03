@@ -20,7 +20,7 @@ class Game {
         const createLives = () => {
             const livesDom = document.querySelector("#lives-screen")
             const myImage = new Image();
-            myImage.src = '/images/heart.png';
+            myImage.src = '/images/heart.svg';
             myImage.classList.add("heart")
             livesDom.appendChild(myImage)
         }
@@ -28,47 +28,28 @@ class Game {
         for (let i=0; i<this.lives; i++){
             createLives()
         }
-        ////////////////////////////////////////////////////////////////
         // show the recipe
         this.recipe = level[this.currentLevel]
+        this.recipe[0].active = false
+        //console.log(level[this.currentLevel][0]);
+
 
         //console.log(this.recipe)
         this.recipe.forEach(element => {
-            console.log(element.name);
+            //console.log(element.name);
             ingredientsList.forEach((el) => {
                 if (el.name === element.name){
-                    //console.log(el.image)
                     element.active = true
-                    console.log (element.name + " elemento activo? " + element.active)
-
                     const recipeDom = document.querySelector("#recipe-screen")
                     const ingImage = new Image();
                     ingImage.src = el.image;
-                    console.log("esta es la imagen" + el.name);
+                    ingImage.classList.add("gray-scale")
+                    ingImage.id = element.name
                     recipeDom.appendChild(ingImage)
-        
                     
-                    
-
-
                 }     
-            })
-            // if (element.active === true){
-            //     //console.log(element.active)
-            //     //show it in html
-            //     const recipeDom = document.querySelector("#recipe-screen")
-            //     const ingImage = new Image();
-            //     ingImage.src = el.image;
-            //     console.log("esta es la imagen" + el.name);
-            //     //ingImage.classList.add("ing")
-            //     recipeDom.appendChild(ingImage)
-
-            // }
-            
-            
+            })   
         })
-
-        ////////////////////////////////////////////////////////////////
         
         this.canvas = document.querySelector("#canvas")
         this.ctx = canvas.getContext('2d')
@@ -93,10 +74,10 @@ class Game {
             
 
             // create falling ingredients
-            if (Math.random() > 0.99) {
+            if (Math.random() > 0.97) {
                 const x = Math.floor(Math.random() * (this.canvas.width - this.ingredientSize))
                 const y = this.canvas.height - this.ingredientSize;
-                console.log(this.safeZone(x))
+                //console.log(this.safeZone(x))
                 if (this.safeZone(x)) {
                 
                 const randomIndex = Math.floor(Math.random() * ingredientsList.length);
@@ -114,6 +95,22 @@ class Game {
 
               this.ingredients =  this.ingredients.filter((el) => el.y<this.canvas.height)
 
+
+            //check Level
+            ////////////////////////////////////
+            // let ingCatched = false
+            // for (let el of this.recipe){
+            //     console.log("console log de el.active: " + el.name);
+            //     if (el.active === false) ingCatched = false
+            //     else ingCatched = true
+            // }
+
+            //console.log("ingrediente catched is " + ingCatched);
+
+            // if (ingCatched === true) nextLevel()
+
+            ////////////////////////////////////
+
             if (this.gameOver === false){
                 window.requestAnimationFrame(loopCallback);
             }else{buildGameOver()}
@@ -124,24 +121,33 @@ class Game {
     // Check if there are any collision
     checkCollisions(){
         //  console.log(this.ingredients);
+        
         this.ingredients.forEach((ingredient, indexIngredient) => {
                 
             if (this.player.collision(ingredient)) {
 
                 let checkRecipe = false
+                
 
                 this.recipe.forEach(element => {
                     if(element.name === ingredient.name){
-                        console.log("included")
-                        element.active = true
+                        //console.log("included")
+                        element.active = false
+                        element.included = true
+                        console.log (element)
                         checkRecipe = true
+                        //this.ingredientsCatched.push(ingredient.name)
+                        document.getElementById(ingredient.name).classList.remove("gray-scale")
                     }
+                    //check if all elements in array are included: true
+                    let allItems =  this.recipe.every( e  => e.included === true)
+                    if(allItems) buildNextLevel()
                 })
 
                 if(!checkRecipe){
                     if(this.lives > 1){
                         this.lives -= 1
-                        console.log(this.lives)
+                        //console.log(this.lives)
 
                         const parent = document.querySelector("#lives-screen")
                         const firstChild = document.getElementsByClassName("heart")
@@ -159,16 +165,15 @@ class Game {
     }
 
     safeZone(x){
+        let isSafe = true
         this.ingredients.forEach((elem) => {
             if (elem.y < (this.margin + this.ingredientSize)){
-                console.log("elem.y es menor");
                 if(elem.x > (x - this.margin) && elem.x < (x + this.ingredientSize + this.margin)){
-                    console.log("elem.x es menor");
-                    return false
+                    isSafe = false
                 }
             }
         })
-        return true
+        return isSafe
     }
 }
 
