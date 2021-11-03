@@ -4,29 +4,51 @@ const recipeData = [
     ["tomato", "mozzarella", "ham", "mushrooms", "olives"]
 ]
 
-const level1 = [
-  {name: "chocolate", active: false},
-  {name: "mozzarella", active: false},
-  {name: "basil", active: false}
+const level = [
+  [
+    {name: "tomato", active: false},
+    {name: "mozzarella", active: false},
+    {name: "basil", active: false}
+  ],
+  [
+    {name: "tomato", active: false},
+    {name: "mozzarella", active: false},
+    {name: "anchovies", active: false},
+    {name: "capers", active: false}
+  ],
+  [
+    {name: "tomato", active: false},
+    {name: "mozzarella", active: false},
+    {name: "ham", active: false},
+    {name: "mushrooms", active: false},
+    {name: "olives", active: false}
+  ]
+
 ]
-const level2 = [
-  {name: "tomato", active: false},
-  {name: "mozzarella", active: false},
-  {name: "anchovies", active: false},
-  {name: "capers", active: false}
-]
-const level3 = [
-  {name: "tomato", active: false},
-  {name: "mozzarella", active: false},
-  {name: "ham", active: false},
-  {name: "mushrooms", active: false},
-  {name: "olives", active: false}
-]
+
+// const level1 = [
+//   {name: "chocolate", active: false},
+//   {name: "mozzarella", active: false},
+//   {name: "basil", active: false}
+// ]
+// const level2 = [
+//   {name: "tomato", active: false},
+//   {name: "mozzarella", active: false},
+//   {name: "anchovies", active: false},
+//   {name: "capers", active: false}
+// ]
+// const level3 = [
+//   {name: "tomato", active: false},
+//   {name: "mozzarella", active: false},
+//   {name: "ham", active: false},
+//   {name: "mushrooms", active: false},
+//   {name: "olives", active: false}
+// ]
 
 const ingredientsList = [
     {
       name: "tomato",
-      image: 'images/tomato.png'
+      image: '/images/tomato.png'
     },
     {
       name: "mozzarella",
