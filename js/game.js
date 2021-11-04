@@ -5,9 +5,9 @@ class Game {
         this.player = null
         this.ingredients = []
         this.recipe = []
-        this.ingredientsCatched = []
         this.lives = 3
         this.gameOver = false
+        this.nextLevel = false
         this.ingredientSize = 90
         this.margin = 40
         this.currentLevel = 0
@@ -30,7 +30,7 @@ class Game {
         }
         // show the recipe
         this.recipe = level[this.currentLevel]
-        this.recipe[0].active = false
+        //this.recipe[0].active = false
         //console.log(level[this.currentLevel][0]);
 
 
@@ -82,6 +82,7 @@ class Game {
                 
                 const randomIndex = Math.floor(Math.random() * ingredientsList.length);
                 this.ingredients.push(new Ingredient(ingredientsList[randomIndex].name, ingredientsList[randomIndex].image, x, y, this.ctx, 3, this.ingredientSize));
+                
             }
             }
 
@@ -93,27 +94,22 @@ class Game {
 
             this.checkCollisions();
 
-              this.ingredients =  this.ingredients.filter((el) => el.y<this.canvas.height)
+            this.ingredients =  this.ingredients.filter((el) => el.y<this.canvas.height)
 
-
-            //check Level
-            ////////////////////////////////////
-            // let ingCatched = false
-            // for (let el of this.recipe){
-            //     console.log("console log de el.active: " + el.name);
-            //     if (el.active === false) ingCatched = false
-            //     else ingCatched = true
-            // }
-
-            //console.log("ingrediente catched is " + ingCatched);
-
-            // if (ingCatched === true) nextLevel()
-
-            ////////////////////////////////////
-
-            if (this.gameOver === false){
+            if(this.nextLevel === true){
+                new Audio('/sounds/win sound 1-2.wav').play();
+                level[0].forEach((el) =>{
+                    //console.log(el);
+                    el.included = false
+                })
+                buildNextLevel()
+            }else if (this.gameOver === false){
                 window.requestAnimationFrame(loopCallback);
-            }else{buildGameOver()}
+            }else{
+                new Audio('/sounds/KL Peach Game Over 1.mp3').play();
+                buildGameOver()
+            }
+
         }
         //console.log("finish the loop");
         window.requestAnimationFrame(loopCallback);
@@ -131,23 +127,26 @@ class Game {
 
                 this.recipe.forEach(element => {
                     if(element.name === ingredient.name){
-                        //console.log("included")
+                            //console.log(element.included);
                         element.active = false
                         element.included = true
-                        console.log (element)
+                            //console.log(element.included);
+                        //console.log (element)
                         checkRecipe = true
                         //this.ingredientsCatched.push(ingredient.name)
                         document.getElementById(ingredient.name).classList.remove("gray-scale")
+                        new Audio('/sounds/select_006.ogg').play();
                     }
                     //check if all elements in array are included: true
                     let allItems =  this.recipe.every( e  => e.included === true)
-                    if(allItems) buildNextLevel()
+                    if(allItems) {this.nextLevel = true}
                 })
 
                 if(!checkRecipe){
                     if(this.lives > 1){
                         this.lives -= 1
                         //console.log(this.lives)
+                        new Audio('/sounds/error_006.ogg').play();
 
                         const parent = document.querySelector("#lives-screen")
                         const firstChild = document.getElementsByClassName("heart")
@@ -159,6 +158,7 @@ class Game {
                 }
 
                 this.ingredients.splice(indexIngredient, 1)
+                //console.log(this.ingredients);
                 
             }
         })
