@@ -48,58 +48,58 @@ const level = [
 const ingredientsList = [
     {
       name: "tomato",
-      image: 'images/tomato.png'
+      image: './images/tomato.png'
     },
     {
       name: "mozzarella",
-      image: 'images/mozzarella.png'
+      image: './images/mozzarella.png'
     },
     {
       name: "basil",
-      image: 'images/basil.png'
+      image: './images/basil.png'
     },
     {
       name: "ham",
-      image: 'images/ham.png'
+      image: './images/ham.png'
     },
     {
       name: "anchovies",
-      image: 'images/anchovies.png'
+      image: './images/anchovies.png'
     },
     {
       name: "capers",
-      image: 'images/capers.png'
+      image: './images/capers.png'
     },
     {
       name: "olives",
-      image: 'images/olives.png'
+      image: './images/olives.png'
     },
     {
       name: "mushrooms",
-      image: 'images/mushrooms.png'
+      image: './images/mushrooms.png'
     },
     {
       name: "pineapple",
-      image: 'images/pineapple.png'
+      image: './images/pineapple.png'
     },
     {
       name: "tuna",
-      image: 'images/tuna.png'
+      image: './images/tuna.png'
     },
     {
       name: "mussels",
-      image: 'images/mussels.png'
+      image: './images/mussels.png'
     },
     {
       name: "avocado",
-      image: 'images/avocado.png'
+      image: './images/avocado.png'
     },
     {
       name: "nachos",
-      image: 'images/nachos.png'
+      image: './images/nachos.png'
     },
     {
       name: "chocolate",
-      image: 'images/chocolate.png'
+      image: './images/chocolate.png'
     },
   ]
