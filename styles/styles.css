@@ -1,19 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
 
-/*   *{
-    background-color: beige;
-} */
-
-
 body{
     display: flex;
     justify-content: center;
-    background-color: black;
+    background-color: rgb(185, 185, 185);
     font-family: 'Comfortaa', cursive;
 }
 
 #all-content{
-    /* border: solid 2px red; */
     width: 800px;
     height: 600px;
     position: relative;
@@ -25,7 +19,6 @@ main{
 }
 
 canvas {
-    border: 2px solid black;
     background-color: beige; 
 }
 
@@ -45,7 +38,6 @@ button:hover{
 }
 
 .screen {
-    border: 2px solid black;  
     background-color: beige;
     width: 800px;
     height: 600px;
@@ -111,8 +103,7 @@ button:hover{
     width: 55px;
     height: 55px;
     padding: 10px 5px;
-/*     filter: grayscale(100%);
- */}
+}
 
 .gray-scale{
     filter: grayscale(100%);

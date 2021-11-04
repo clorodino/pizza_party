@@ -1,3 +1,5 @@
+let currentLevel = 0
+
 class Game {
     constructor(){
         this.canvas = null
@@ -5,18 +7,20 @@ class Game {
         this.player = null
         this.ingredients = []
         this.recipe = []
-        this.lives = 3
+        this.lives = 5
         this.gameOver = false
         this.nextLevel = false
         this.ingredientSize = 90
-        this.margin = 40
-        this.currentLevel = 0
+        this.margin = 100
         this.music = new Audio('./sounds/2018-10-06_-_Silly_Chicken_-_David_Fesliyan.mp3')
+        this.speed = currentLevel + 2.5
     }
 
     // Init the player, obstacules and rewards movement
     start(){
 
+        console.log(currentLevel);
+        //init the music
         this.music.play();
 
         //draw hearts
@@ -33,7 +37,7 @@ class Game {
             createLives()
         }
         // show the recipe
-        this.recipe = level[this.currentLevel]
+        this.recipe = level[currentLevel]
 
         this.recipe.forEach(element => {
             ingredientsList.forEach((el) => {
@@ -70,24 +74,19 @@ class Game {
             this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
             this.player.draw();
             
-
             // create falling ingredients
             if (Math.random() > 0.97) {
                 const x = Math.floor(Math.random() * (this.canvas.width - this.ingredientSize))
                 const y = this.canvas.height - this.ingredientSize;
-                //console.log(this.safeZone(x))
                 if (this.safeZone(x)) {
-                
-                const randomIndex = Math.floor(Math.random() * ingredientsList.length);
-                this.ingredients.push(new Ingredient(ingredientsList[randomIndex].name, ingredientsList[randomIndex].image, x, y, this.ctx, 3, this.ingredientSize));
-                
-            }
+                    const randomIndex = Math.floor(Math.random() * ingredientsList.length);
+                    this.ingredients.push(new Ingredient(ingredientsList[randomIndex].name, ingredientsList[randomIndex].image, x, y, this.ctx, this.speed, this.ingredientSize));
+                }
             }
 
             this.ingredients.forEach((ingredient) => {
                 ingredient.move()   
                 ingredient.draw()
-                
             });
 
             this.checkCollisions();
@@ -95,52 +94,47 @@ class Game {
             this.ingredients =  this.ingredients.filter((el) => el.y<this.canvas.height)
 
             if(this.nextLevel === true){
-                console.log(this.music);
                 this.music.pause();
-                this.music.currentTime = 0;
+                this.music.currentTime = 0
+                currentLevel ++
+                console.log(currentLevel);
 
-                new Audio('sounds/win sound 1-2.wav').play();
-                level[this.currentLevel].forEach((el) =>{
+                new Audio('sounds/win sound 1-2.wav').play()
+
+                if (level[currentLevel] === undefined){
+                    buildYouRock()
+                }
+
+                level[currentLevel].forEach((el) =>{
                     el.included = false
                 })
                 buildNextLevel()
             }else if (this.gameOver === false){
-                window.requestAnimationFrame(loopCallback);
+                window.requestAnimationFrame(loopCallback)
             }else{
                 this.music.pause();
-                this.music.currentTime = 0;
+                this.music.currentTime = 0
 
-                new Audio('sounds/KL Peach Game Over 1.mp3').play();
-                level[this.currentLevel].forEach((el) =>{
+                new Audio('./sounds/game_over.mp3').play()
+                level[currentLevel].forEach((el) =>{
                     el.included = false
                 })
                 buildGameOver()
             }
-
         }
-        //console.log("finish the loop");
-        window.requestAnimationFrame(loopCallback);
+        window.requestAnimationFrame(loopCallback)
     }
     // Check if there are any collision
     checkCollisions(){
-        //  console.log(this.ingredients);
         
-        this.ingredients.forEach((ingredient, indexIngredient) => {
-                
+        this.ingredients.forEach((ingredient, indexIngredient) => {      
             if (this.player.collision(ingredient)) {
-
                 let checkRecipe = false
-                
-
                 this.recipe.forEach(element => {
                     if(element.name === ingredient.name){
-                            //console.log(element.included);
                         element.active = false
                         element.included = true
-                            //console.log(element.included);
-                        //console.log (element)
                         checkRecipe = true
-                        //this.ingredientsCatched.push(ingredient.name)
                         document.getElementById(ingredient.name).classList.remove("gray-scale")
                         new Audio('sounds/select_006.ogg').play();
                     }
@@ -152,21 +146,15 @@ class Game {
                 if(!checkRecipe){
                     if(this.lives > 1){
                         this.lives -= 1
-                        //console.log(this.lives)
                         new Audio('sounds/error_006.ogg').play();
-
                         const parent = document.querySelector("#lives-screen")
                         const firstChild = document.getElementsByClassName("heart")
                         parent.removeChild(firstChild[0])
-
                     }else{
                         this.gameOver = true;
                     }
                 }
-
                 this.ingredients.splice(indexIngredient, 1)
-                //console.log(this.ingredients);
-                
             }
         })
     }
