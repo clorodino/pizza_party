@@ -8,7 +8,7 @@ const buildSplashScreen = () => {
     </div> `
     const button = document.querySelector("#button-start")
     button.addEventListener("click", () => {
-        new Audio('/sounds/toggle_002.ogg').play();
+        new Audio('sounds/toggle_002.ogg').play();
         buildGame()
     })
 }
@@ -40,7 +40,7 @@ const buildNextLevel = () => {
     </div> `
     const button = document.querySelector("#button-next-level")
     button.addEventListener("click", () => {
-        new Audio('/sounds/toggle_002.ogg').play();
+        new Audio('sounds/toggle_002.ogg').play();
         buildGame()
     })
 }
@@ -56,7 +56,7 @@ const buildGameOver = () => {
     </div> `
     const button = document.querySelector("#button-try-again")
     button.addEventListener("click", () => {
-        new Audio('/sounds/toggle_002.ogg').play();
+        new Audio('sounds/toggle_002.ogg').play();
         buildGame()
     })
 }

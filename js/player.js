@@ -36,7 +36,7 @@ class Player {
         // this.ctx.fillRect(this.x, this.y, this.size, this.size);
 
         const imgPizza = new Image()
-        imgPizza.src = "/images/pizza.png"
+        imgPizza.src = "images/pizza.png"
         this.ctx.drawImage(imgPizza, this.x, this.y, this.size, this.size)
 
 

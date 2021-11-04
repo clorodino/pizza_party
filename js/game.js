@@ -20,7 +20,7 @@ class Game {
         const createLives = () => {
             const livesDom = document.querySelector("#lives-screen")
             const myImage = new Image();
-            myImage.src = '/images/heart.svg';
+            myImage.src = 'add/images/heart.svg';
             myImage.classList.add("heart")
             livesDom.appendChild(myImage)
         }
@@ -97,7 +97,7 @@ class Game {
             this.ingredients =  this.ingredients.filter((el) => el.y<this.canvas.height)
 
             if(this.nextLevel === true){
-                new Audio('/sounds/win sound 1-2.wav').play();
+                new Audio('sounds/win sound 1-2.wav').play();
                 level[0].forEach((el) =>{
                     //console.log(el);
                     el.included = false
@@ -106,7 +106,7 @@ class Game {
             }else if (this.gameOver === false){
                 window.requestAnimationFrame(loopCallback);
             }else{
-                new Audio('/sounds/KL Peach Game Over 1.mp3').play();
+                new Audio('sounds/KL Peach Game Over 1.mp3').play();
                 buildGameOver()
             }
 
@@ -135,7 +135,7 @@ class Game {
                         checkRecipe = true
                         //this.ingredientsCatched.push(ingredient.name)
                         document.getElementById(ingredient.name).classList.remove("gray-scale")
-                        new Audio('/sounds/select_006.ogg').play();
+                        new Audio('sounds/select_006.ogg').play();
                     }
                     //check if all elements in array are included: true
                     let allItems =  this.recipe.every( e  => e.included === true)
@@ -146,7 +146,7 @@ class Game {
                     if(this.lives > 1){
                         this.lives -= 1
                         //console.log(this.lives)
-                        new Audio('/sounds/error_006.ogg').play();
+                        new Audio('sounds/error_006.ogg').play();
 
                         const parent = document.querySelector("#lives-screen")
                         const firstChild = document.getElementsByClassName("heart")
