@@ -1,5 +1,6 @@
 // Build the splash screen
 const buildSplashScreen = () => {
+    
     const screen = document.querySelector(".content")
     screen.innerHTML = `
     <div class="screen">

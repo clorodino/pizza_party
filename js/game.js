@@ -11,10 +11,13 @@ class Game {
         this.ingredientSize = 90
         this.margin = 40
         this.currentLevel = 0
+        this.music = new Audio('./sounds/2018-10-06_-_Silly_Chicken_-_David_Fesliyan.mp3')
     }
 
     // Init the player, obstacules and rewards movement
     start(){
+
+        this.music.play();
 
         //draw hearts
         const createLives = () => {
@@ -24,19 +27,15 @@ class Game {
             myImage.classList.add("heart")
             livesDom.appendChild(myImage)
         }
+
         //create lives
         for (let i=0; i<this.lives; i++){
             createLives()
         }
         // show the recipe
         this.recipe = level[this.currentLevel]
-        //this.recipe[0].active = false
-        //console.log(level[this.currentLevel][0]);
 
-
-        //console.log(this.recipe)
         this.recipe.forEach(element => {
-            //console.log(element.name);
             ingredientsList.forEach((el) => {
                 if (el.name === element.name){
                     element.active = true
@@ -46,7 +45,6 @@ class Game {
                     ingImage.classList.add("gray-scale")
                     ingImage.id = element.name
                     recipeDom.appendChild(ingImage)
-                    
                 }     
             })   
         })
@@ -97,16 +95,25 @@ class Game {
             this.ingredients =  this.ingredients.filter((el) => el.y<this.canvas.height)
 
             if(this.nextLevel === true){
+                console.log(this.music);
+                this.music.pause();
+                this.music.currentTime = 0;
+
                 new Audio('sounds/win sound 1-2.wav').play();
-                level[0].forEach((el) =>{
-                    //console.log(el);
+                level[this.currentLevel].forEach((el) =>{
                     el.included = false
                 })
                 buildNextLevel()
             }else if (this.gameOver === false){
                 window.requestAnimationFrame(loopCallback);
             }else{
+                this.music.pause();
+                this.music.currentTime = 0;
+
                 new Audio('sounds/KL Peach Game Over 1.mp3').play();
+                level[this.currentLevel].forEach((el) =>{
+                    el.included = false
+                })
                 buildGameOver()
             }
 
