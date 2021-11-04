@@ -20,7 +20,7 @@ class Game {
         const createLives = () => {
             const livesDom = document.querySelector("#lives-screen")
             const myImage = new Image();
-            myImage.src = './add/images/heart.svg';
+            myImage.src = './images/heart.svg';
             myImage.classList.add("heart")
             livesDom.appendChild(myImage)
         }
