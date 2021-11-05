@@ -23,9 +23,6 @@ const level = [
       { name: "mushrooms" },
       { name: "tuna" },
       { name: "ham" },
-    ],
-    [
-        { name: "tomato" }
     ]
 ];
 
