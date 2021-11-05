@@ -19,23 +19,12 @@ class Game {
     // Init the player, obstacules and rewards movement
     start(){
 
-        console.log(currentLevel);
-        //init the music
+        // init the music
         this.music.play();
 
-        //draw hearts
-        const createLives = () => {
-            const livesDom = document.querySelector("#lives-screen")
-            const myImage = new Image();
-            myImage.src = './images/heart.svg';
-            myImage.classList.add("heart")
-            livesDom.appendChild(myImage)
-        }
+        // create and draw lives
+        createLives(this.lives)
 
-        //create lives
-        for (let i=0; i<this.lives; i++){
-            createLives()
-        }
         // show the recipe
         this.recipe = level[currentLevel]
 
@@ -53,6 +42,7 @@ class Game {
             })   
         })
         
+        // create the player
         this.canvas = document.querySelector("#canvas")
         this.ctx = canvas.getContext('2d')
         this.player = new Player(this.canvas)
@@ -67,7 +57,7 @@ class Game {
         });
         this.startLoop()
     }
-    // Create a loop
+    // create a loop
     startLoop(){
         const loopCallback = () => {
 
@@ -89,32 +79,34 @@ class Game {
                 ingredient.draw()
             });
 
+            // check collisions
             this.checkCollisions();
 
             this.ingredients =  this.ingredients.filter((el) => el.y<this.canvas.height)
 
-            if(this.nextLevel === true){
+            // check if level passed
+            if(this.nextLevel === true ){
                 this.music.pause();
                 this.music.currentTime = 0
-                currentLevel ++
-                console.log(currentLevel);
-
                 new Audio('sounds/win sound 1-2.wav').play()
-
-                if (level[currentLevel] === undefined){
-                    buildYouRock()
-                }
-
+                
                 level[currentLevel].forEach((el) =>{
                     el.included = false
                 })
-                buildNextLevel()
-            }else if (this.gameOver === false){
+                currentLevel ++
+                console.log("entra")
+                if (level.length === currentLevel){ // check if there are more levels
+                    buildYouRock() 
+                }else{
+                    buildNextLevel()
+                }
+
+                
+            }else if (this.gameOver === false){ 
                 window.requestAnimationFrame(loopCallback)
             }else{
                 this.music.pause();
                 this.music.currentTime = 0
-
                 new Audio('./sounds/game_over.mp3').play()
                 level[currentLevel].forEach((el) =>{
                     el.included = false
@@ -169,6 +161,17 @@ class Game {
             }
         })
         return isSafe
+    }
+}
+
+
+const createLives = (numLives) => {
+    for (let i=0; i<numLives; i++){
+        const livesDom = document.querySelector("#lives-screen")
+        const myImage = new Image();
+        myImage.src = './images/heart.svg';
+        myImage.classList.add("heart")
+        livesDom.appendChild(myImage)
     }
 }
 

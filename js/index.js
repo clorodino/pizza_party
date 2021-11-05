@@ -42,7 +42,7 @@ const buildNextLevel = () => {
     });
 };
 
-// Build de game over screen
+// Build the game over screen
 const buildGameOver = () => {
     const screen = document.querySelector("#all-content");
     screen.innerHTML = `
@@ -58,7 +58,7 @@ const buildGameOver = () => {
     });
 };
 
-// Build de game over screen
+// Build final Screen
 const buildYouRock = () => {
     const screen = document.querySelector("#all-content");
     screen.innerHTML = `
