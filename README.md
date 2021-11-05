@@ -8,7 +8,7 @@ The game screen is a interface where ingredients are dropping from the top. The 
 * * *
 ## MVP
 ### Technique
-HTML5, DOM, CSS, **Canvas** and Vanilla **Javascript**
+HTML5, DOM, CSS, **Canvas** and **Javascript**
 
 ### Game states
 * __Start Screen__
@@ -29,12 +29,13 @@ HTML5, DOM, CSS, **Canvas** and Vanilla **Javascript**
 * Create interface
 * Create player
 * Move player
-  * Press arrow keys to move the player around the board.
-* Create ingredients
-  * Each ingredient will be created once the previous one is taken
-* Create knives
-  * Define a setInterval where knives will be created every 10 seconds
+  * Press arrow keys to move the player to left or rigth.
+* Create ingredients$$
+  * Each ingredient fall from the top
 * Check collision
-  * If there is a collision with an ingredient => player gains points and new ingredient is shown
-  * If there is a collision with a knive => Game Over => Show Game Over Screen
+  * If the ingredient is in the recipe => the recipe box is update
+  * If the ingredient is not in the recipe => the player lost 1 live
+  * If the player lost all the lives => the game is over
+  * If the player collects all the ingredients => go to next level
+  * If the player passed the last level => show final winner screen
 * * *

@@ -94,7 +94,6 @@ class Game {
                     el.included = false
                 })
                 currentLevel ++
-                console.log("entra")
                 if (level.length === currentLevel){ // check if there are more levels
                     buildYouRock() 
                 }else{
@@ -164,7 +163,6 @@ class Game {
     }
 }
 
-
 const createLives = (numLives) => {
     for (let i=0; i<numLives; i++){
         const livesDom = document.querySelector("#lives-screen")
@@ -174,4 +172,3 @@ const createLives = (numLives) => {
         livesDom.appendChild(myImage)
     }
 }
-
