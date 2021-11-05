@@ -24,9 +24,6 @@ const level = [
       { name: "tuna" },
       { name: "ham" },
     ],
-    [
-        { name: "tomato" }
-    ]
 ];
 
 const ingredientsList = [
