@@ -1,30 +1,50 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+* {
+    margin: 0;
+    top: 0;
+}
 
 body{
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    background-color: rgb(185, 185, 185);
-    font-family: 'Comfortaa', cursive;
+    align-content: center; */
+    background-color: chocolate;
+    /* background-color: rgb(185, 185, 185); */
+    font-family: 'Fredoka One', cursive;
+
 }
 
 #all-content{
-    width: 800px;
+    /* width: 800px;
     height: 600px;
-    position: relative;
+    position: relative; */
+
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 main{
+    width: 100%;
+    height: 100vh;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 canvas {
     background-color: beige; 
+    border-radius: 25px;
+    -webkit-box-shadow: 0px 0px 30px 2px rgba(0,0,0,0.2); 
+    box-shadow: 0px 0px 30px 2px rgba(0,0,0,0.2);
 }
 
 button {
     font-family: 'Comfortaa', cursive;
-    border-radius: 20px;
+    border-radius: 25px;
     padding: 15px 25px;
     font-size: 15px;
     background-color: black;
@@ -45,6 +65,9 @@ button:hover{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border-radius: 25px;
+    -webkit-box-shadow: 0px 0px 30px 2px rgba(0,0,0,0.2); 
+    box-shadow: 0px 0px 30px 2px rgba(0,0,0,0.2);
 }
 
 .splash-screen{
@@ -63,9 +86,22 @@ button:hover{
     padding-bottom: 20px;
 }
 
+.bar_content {
+   /*  background-color: aqua;
+    height: 100vh; */
+    width: 800px;
+    height: 600px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    top: calc(50vh - 300px);
+
+}
+
 #bar{
-    width: 100%;
+    /* width: 100%; */
     /* border: 2px solid yellow;   */
+    width: 100%;
     position:absolute;
     display: flex;
     justify-content:space-between;
@@ -80,6 +116,7 @@ button:hover{
     margin-top: 15px;
     margin-left: 15px;
     border-radius: 20px;
+    border: 2px solid chocolate;
 }
 
 #lives-screen img{
@@ -97,6 +134,7 @@ button:hover{
     margin-top: 15px;
     margin-right: 15px;
     border-radius: 20px;
+    border: 2px solid chocolate;
 }
 
 #recipe-screen img{

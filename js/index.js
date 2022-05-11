@@ -17,9 +17,11 @@ const buildSplashScreen = () => {
 const buildGame = () => {
     const bars = document.querySelector("#all-content");
     bars.innerHTML = ` 
-        <div id="bar">
-            <div id="lives-screen"></div>
-            <div id="recipe-screen"></div> 
+        <div class="bar_content">
+            <div id="bar">
+                <div id="lives-screen"></div>
+                <div id="recipe-screen"></div> 
+            </div>
         </div>
         <canvas id="canvas" height="600" width="800"></canvas> 
     `;
